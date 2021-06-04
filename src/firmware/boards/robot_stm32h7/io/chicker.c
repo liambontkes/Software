@@ -22,7 +22,7 @@ BreakBeam_t *io_break_beam_create(GpioPin_t *read_pin)
 
     break_beam->read_pin = read_pin;
 
-    io_gpio_pin_setActive(break_beam->read_pin);
+//    io_gpio_pin_setActive(break_beam->read_pin);
 
     return break_beam;
 }

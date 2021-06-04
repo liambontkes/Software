@@ -3,6 +3,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 #include "firmware/boards/robot_stm32h7/Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h"
+#include <stdbool.h>
 #pragma GCC diagnostic pop
 
 typedef struct GpioPin GpioPin_t;
@@ -52,3 +53,10 @@ void io_gpio_pin_setActive(GpioPin_t* gpio_pin);
  * @param gpio_pin
  */
 void io_gpio_pin_setInactive(GpioPin_t* gpio_pin);
+
+/**
+ * Gets the state of the given GPIO pin
+ * @param gpio_pin
+ * @return active (1) inactive (0)
+ */
+bool io_gpio_pin_get(GpioPin_t* gpio_pin);

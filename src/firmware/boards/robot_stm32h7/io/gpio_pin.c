@@ -66,6 +66,10 @@ void io_gpio_pin_setInactive(GpioPin_t* gpio_pin)
     }
 }
 
+bool io_gpio_pin_get(GpioPin_t *gpio_pin) {
+    return 0;
+}
+
 void io_gpio_pin_setHALPinState(GpioPin_t* gpio_pin, GPIO_PinState pin_state)
 {
     HAL_GPIO_WritePin(gpio_pin->gpio_handler, gpio_pin->gpio_pin_index, pin_state);

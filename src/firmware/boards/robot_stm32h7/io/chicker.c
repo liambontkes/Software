@@ -59,6 +59,6 @@ void io_chicker_disable_auto_chip()
 
 bool io_get_breakbeam()
 {
-
+    // TODO (#2080) implement this
     return 0;
 }

@@ -34,9 +34,9 @@ typedef struct GpioOutputPin
  * @param gpio_pin The pin to set the state for
  * @param pin_state The state to set the pin to
  */
-void io_gpio_pin_setHALPinState(GpioPin_t* gpio_pin, GPIO_PinState pin_state);
+void io_gpio_pin_setHALPinState(GpioOutputPin_t* gpio_output_pin, GPIO_PinState pin_state);
 
-GpioInputPin_t* io_gpio_input_pin_create(GPIO_TypeDef *gpio_handler, uint16_t gpio_pin_index)
+GpioInputPin_t* io_gpio_input_pin_create(GPIO_TypeDef* gpio_handler, uint16_t gpio_pin_index)
 {
     GpioInputPin_t* gpio_input_pin = (GpioInputPin_t*)malloc(sizeof(GpioInputPin_t));
 
@@ -46,7 +46,8 @@ GpioInputPin_t* io_gpio_input_pin_create(GPIO_TypeDef *gpio_handler, uint16_t gp
     return gpio_input_pin;
 }
 
-GpioOutputPin_t* io_gpio_output_pin_create(GPIO_TypeDef *gpio_handler, uint16_t gpio_pin_index,
+GpioOutputPin_t* io_gpio_output_pin_create(GPIO_TypeDef* gpio_handler,
+                                           uint16_t gpio_pin_index,
                                            GpioPinActiveState active_state)
 {
     GpioOutputPin_t* gpio_output_pin = (GpioOutputPin_t*)malloc(sizeof(GpioOutputPin_t));
@@ -65,35 +66,37 @@ void io_gpio_pin_destroy(GpioPin_t* gpio_pin)
     free(gpio_pin);
 }
 
-void io_gpio_output_pin_setActive(GpioOutputPin_t* gpio_pin)
+void io_gpio_output_pin_setActive(GpioOutputPin_t* gpio_output_pin)
 {
-    switch (gpio_pin->active_state)
+    switch (gpio_output_pin->active_state)
     {
         case ACTIVE_HIGH:
-            io_gpio_pin_setHALPinState(gpio_pin, GPIO_PIN_SET);
+            io_gpio_pin_setHALPinState(gpio_output_pin, GPIO_PIN_SET);
             return;
         case ACTIVE_LOW:
-            io_gpio_pin_setHALPinState(gpio_pin, GPIO_PIN_RESET);
+            io_gpio_pin_setHALPinState(gpio_output_pin, GPIO_PIN_RESET);
             return;
     }
 }
 
-void io_gpio_pin_setInactive(GpioPin_t* gpio_pin)
+void io_gpio_pin_setInactive(GpioOutputPin_t* gpio_output_pin)
 {
-    switch (gpio_pin->active_state)
+    switch (gpio_output_pin->active_state)
     {
         case ACTIVE_HIGH:
-            io_gpio_pin_setHALPinState(gpio_pin, GPIO_PIN_RESET);
+            io_gpio_pin_setHALPinState(gpio_output_pin, GPIO_PIN_RESET);
             return;
         case ACTIVE_LOW:
-            io_gpio_pin_setHALPinState(gpio_pin, GPIO_PIN_SET);
+            io_gpio_pin_setHALPinState(gpio_output_pin, GPIO_PIN_SET);
             return;
     }
 }
 
-void io_gpio_pin_setHALPinState(GpioPin_t* gpio_pin, GPIO_PinState pin_state)
+void io_gpio_pin_setHALPinState(GpioOutputPin_t* gpio_output_pin, GPIO_PinState pin_state)
 {
-    HAL_GPIO_WritePin(gpio_pin->gpio_handler, gpio_pin->gpio_pin_index, pin_state);
+    HAL_GPIO_WritePin(
+        gpio_output_pin->gpio_pin.gpio_handler,
+        gpio_output_pin->gpio_pin.gpio_pin_index, pin_state);
 }
 
 bool io_gpio_pin_get(GpioPin_t* gpio_pin)

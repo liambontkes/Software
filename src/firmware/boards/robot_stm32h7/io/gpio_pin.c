@@ -12,6 +12,13 @@
  */
 typedef struct GpioPin GpioPin_t;
 
+/**
+ * Set raw HAL state for the given GPIO pin
+ * @param gpio_pin The pin to set the state for
+ * @param pin_state The state to set the pin to
+ */
+void io_gpio_pin_setHALPinState(GpioOutputPin_t* gpio_output_pin, GPIO_PinState pin_state);
+
 typedef struct GpioPin
 {
     GPIO_TypeDef* gpio_handler;
@@ -28,13 +35,6 @@ typedef struct GpioOutputPin
     GpioPin_t gpio_pin;
     GpioPinActiveState active_state;
 } GpioOutputPin_t;
-
-/**
- * Set raw HAL state for the given GPIO pin
- * @param gpio_pin The pin to set the state for
- * @param pin_state The state to set the pin to
- */
-void io_gpio_pin_setHALPinState(GpioOutputPin_t* gpio_output_pin, GPIO_PinState pin_state);
 
 GpioInputPin_t* io_gpio_input_pin_create(GPIO_TypeDef* gpio_handler, uint16_t gpio_pin_index)
 {
@@ -61,9 +61,14 @@ GpioOutputPin_t* io_gpio_output_pin_create(GPIO_TypeDef* gpio_handler,
     return gpio_output_pin;
 }
 
-void io_gpio_pin_destroy(GpioPin_t* gpio_pin)
+void io_gpio_input_pin_destroy(GpioInputPin_t* gpio_input_pin)
 {
-    free(gpio_pin);
+    free(gpio_input_pin);
+}
+
+void io_gpio_output_pin_destroy(GpioOutputPin_t* gpio_output_pin)
+{
+    free(gpio_output_pin);
 }
 
 void io_gpio_output_pin_setActive(GpioOutputPin_t* gpio_output_pin)
@@ -99,7 +104,9 @@ void io_gpio_pin_setHALPinState(GpioOutputPin_t* gpio_output_pin, GPIO_PinState 
         gpio_output_pin->gpio_pin.gpio_pin_index, pin_state);
 }
 
-bool io_gpio_pin_get(GpioPin_t* gpio_pin)
+bool io_gpio_pin_get(GpioInputPin_t* gpio_input_pin)
 {
-    return HAL_GPIO_ReadPin(gpio_pin->gpio_handler, gpio_pin->gpio_pin_index);
+    return HAL_GPIO_ReadPin(
+        gpio_input_pin->gpio_pin.gpio_handler,
+        gpio_input_pin->gpio_pin.gpio_pin_index);
 }

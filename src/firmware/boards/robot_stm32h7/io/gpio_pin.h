@@ -75,26 +75,33 @@ GpioOutputPin_t* io_gpio_output_pin_create(GPIO_TypeDef* gpio_handler, uint16_t 
                                           GpioPinActiveState active_state);
 
 /**
- * Destroys the given GPIO pin
- * @param gpio_pin The GPIO pin to destroy.
+ * Destroys the given GPIO input pin
+ * @param gpio_input_pin The GPIO input pin to destroy.
  */
-void io_gpio_pin_destroy(GpioPin_t* gpio_pin);
+void io_gpio_input_pin_destroy(GpioInputPin_t* gpio_input_pin);
+
+/**
+ * Destroys the given GPIO output pin.
+ *
+ * @param gpio_output_pin The GPIO output pin to destroy.
+ */
+void io_gpio_output_pin_destroy(GpioOutputPin_t* gpio_output_pin);
 
 /**
  * Set the given GPIO pin to be active (1)
  * @param gpio_pin
  */
-void io_gpio_pin_setActive(GpioPin_t* gpio_pin);
+void io_gpio_pin_setActive(GpioOutputPin_t* gpio_output_pin);
 
 /**
  * Set the given GPIO pin to be inactive (0)
  * @param gpio_pin
  */
-void io_gpio_pin_setInactive(GpioPin_t* gpio_pin);
+void io_gpio_pin_setInactive(GpioOutputPin_t* gpio_output_pin);
 
 /**
  * Gets the state of the given GPIO pin
  * @param gpio_pin
  * @return active (1) inactive (0)
  */
-bool io_gpio_pin_get(GpioPin_t* gpio_pin);
+bool io_gpio_pin_get(GpioInputPin_t* gpio_input_pin);

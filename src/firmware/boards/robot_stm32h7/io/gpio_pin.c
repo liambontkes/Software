@@ -65,6 +65,20 @@ void io_gpio_pin_setInactive(GpioPin_t* gpio_pin)
             return;
     }
 }
+bool io_gpio_pin_getState(GpioPin_t* gpio_pin)
+{
+    GPIO_PinState gpio_pin_state = HAL_GPIO_ReadPin(gpio_pin->gpio_handler,
+                                                    gpio_pin->gpio_pin_index);
+    switch(gpio_pin_state)
+    {
+        case GPIO_PIN_SET:
+            return true;
+        case GPIO_PIN_RESET:
+            return false;
+        default:
+            return false;
+    }
+}
 
 void io_gpio_pin_setHALPinState(GpioPin_t* gpio_pin, GPIO_PinState pin_state)
 {

@@ -70,6 +70,11 @@ extern "C"
      */
     void initIoPowerMonitor(void);
 
+    /**
+     * Initializes the chicker
+     */
+    void initIoChicker(void);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

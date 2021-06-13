@@ -75,7 +75,7 @@ void io_gpio_pin_setInactive(GpioPin_t* gpio_pin)
 
 bool io_gpio_pin_getState(GpioPin_t* gpio_pin)
 {
-    switch(io_gpio_pin_getHALPinState(gpio_pin))
+    switch (io_gpio_pin_getHALPinState(gpio_pin))
     {
         case GPIO_PIN_SET:
             return (gpio_pin->active_state == ACTIVE_HIGH);

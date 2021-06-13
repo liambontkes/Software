@@ -31,8 +31,3 @@ void io_chicker_disable_auto_chip()
 {
     // TODO (#2080) implement this
 }
-
-bool io_breakbeam_get_state(GpioPin_t* breakbeam_pin)
-{
-    return io_gpio_pin_getState(breakbeam_pin);
-}

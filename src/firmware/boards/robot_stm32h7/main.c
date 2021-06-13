@@ -41,6 +41,7 @@
 #include "firmware/app/primitives/primitive_manager.h"
 #include "firmware/app/world/firmware_robot.h"
 #include "firmware/app/world/firmware_world.h"
+#include "firmware/boards/robot_stm32h7/io/breakbeam.h"
 #include "firmware/boards/robot_stm32h7/io/charger.h"
 #include "firmware/boards/robot_stm32h7/io/chicker.h"
 #include "firmware/boards/robot_stm32h7/io/dribbler.h"
@@ -166,6 +167,7 @@ int main(void)
     initIoDrivetrain();
     initIoNetworking();
     initIoPowerMonitor();
+    initIoChicker();
 
     // Setup the world that acts as the interface for the higher level firmware
     // (like primitives or the controller) to interface with the outside world
@@ -236,6 +238,18 @@ int main(void)
     PrimitiveManager_t *primitive_manager = app_primitive_manager_create();
 
     io_primitive_executor_init(world, primitive_manager);
+
+    /// BEGIN GPIO PIN INPUT TESTING
+
+    GpioPin_t *breakbeam_pin = io_gpio_pin_create(BREAKBEAM_GPIO_Port, BREAKBEAM_Pin, ACTIVE_HIGH);
+    Breakbeam_t *breakbeam = io_breakbeam_create(breakbeam_pin);
+
+    while (1)
+    {
+        __unused bool breakbeam_state = io_breakbeam_getState(breakbeam);
+    }
+
+    /// END GPIO PIN INPUT TESTING
 
     /* USER CODE END 2 */
 

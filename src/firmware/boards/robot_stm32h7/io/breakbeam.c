@@ -1,7 +1,5 @@
 #include "breakbeam.h"
 
-#include "firmware/app/logger/logger.h"
-
 #include <stdlib.h>
 
 typedef struct Breakbeam
@@ -25,7 +23,7 @@ void io_breakbeam_destroy(Breakbeam_t* breakbeam)
     free(breakbeam);
 }
 
-bool io_breakbeam_get_state(Breakbeam_t* breakbeam)
+bool io_breakbeam_getState(Breakbeam_t* breakbeam)
 {
     return io_gpio_pin_getState(breakbeam->breakbeam_pin);
 }

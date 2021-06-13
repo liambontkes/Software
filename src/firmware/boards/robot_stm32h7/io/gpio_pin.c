@@ -79,9 +79,12 @@ bool io_gpio_pin_getState(GpioPin_t* gpio_pin)
     {
         case GPIO_PIN_SET:
             return (gpio_pin->active_state == ACTIVE_HIGH);
-        default:    // would prefer to use GPIO_PIN_RESET but get build error
+        case GPIO_PIN_RESET:
             return (gpio_pin->active_state == ACTIVE_LOW);
+        default:    // would prefer to use GPIO_PIN_RESET but get build error
+            break;
     }
+    return false;
 }
 
 void io_gpio_pin_setHALPinState(GpioPin_t* gpio_pin, GPIO_PinState pin_state)

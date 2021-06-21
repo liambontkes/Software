@@ -81,7 +81,7 @@ bool io_gpio_pin_getState(GpioPin_t* gpio_pin)
             return (gpio_pin->active_state == ACTIVE_HIGH);
         case GPIO_PIN_RESET:
             return (gpio_pin->active_state == ACTIVE_LOW);
-        default:    // would prefer to use GPIO_PIN_RESET but get build error
+        default:  // would prefer to use GPIO_PIN_RESET but get build error
             break;
     }
     return false;

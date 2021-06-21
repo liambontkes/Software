@@ -1,7 +1,8 @@
 #pragma once
 
-#include "firmware/boards/robot_stm32h7/io/gpio_pin.h"
 #include <stdbool.h>
+
+#include "firmware/boards/robot_stm32h7/io/gpio_pin.h"
 
 typedef struct Breakbeam Breakbeam_t;
 

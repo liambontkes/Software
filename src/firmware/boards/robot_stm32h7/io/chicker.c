@@ -1,8 +1,8 @@
 #include "firmware/boards/robot_stm32h7/io/chicker.h"
 
-#include <stdlib.h>
-#include <stdbool.h>
 #include <assert.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 #include "firmware/app/logger/logger.h"
 
@@ -22,11 +22,11 @@ static bool initialized = false;
 
 void io_chicker_init(Breakbeam_t *breakbeam)
 {
-    Chicker_t *new_chicker = (Chicker_t*)malloc(sizeof(Chicker_t));
+    Chicker_t *new_chicker = (Chicker_t *)malloc(sizeof(Chicker_t));
 
     new_chicker->auto_chip_enabled = false;
     new_chicker->auto_kick_enabled = false;
-    new_chicker->breakbeam = breakbeam;
+    new_chicker->breakbeam         = breakbeam;
 
     _chicker = new_chicker;
 

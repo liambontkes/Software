@@ -240,13 +240,7 @@ int main(void)
 
     /// BEGIN GPIO PIN INPUT TESTING
 
-    GpioPin_t *breakbeam_pin = io_gpio_pin_create(BREAKBEAM_GPIO_Port, BREAKBEAM_Pin, ACTIVE_HIGH);
-    Breakbeam_t *breakbeam = io_breakbeam_create(breakbeam_pin);
 
-    while (1)
-    {
-        __unused bool breakbeam_state = io_breakbeam_getState(breakbeam);
-    }
 
     /// END GPIO PIN INPUT TESTING
 

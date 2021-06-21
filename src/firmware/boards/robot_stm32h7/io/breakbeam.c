@@ -9,13 +9,13 @@ typedef struct Breakbeam
 
 Breakbeam_t* io_breakbeam_create(GpioPin_t* breakbeam_pin)
 {
-    Breakbeam_t* breakbeam = (Breakbeam_t*)malloc(sizeof(Breakbeam_t));
+    Breakbeam_t* new_breakbeam = (Breakbeam_t*)malloc(sizeof(Breakbeam_t));
 
-    breakbeam->breakbeam_pin = breakbeam_pin;
+    new_breakbeam->breakbeam_pin = breakbeam_pin;
 
     // TODO setup IRQ on breakbeam_pin.
 
-    return breakbeam;
+    return new_breakbeam;
 }
 
 void io_breakbeam_destroy(Breakbeam_t* breakbeam)

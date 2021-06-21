@@ -205,6 +205,7 @@ cc_library(
     hdrs = ["chicker.h"],
     restricted_to = ["//cc_toolchain:stm32h7"],
     deps = [
+        ":breakbeam",
         ":gpio_pin",
         "//firmware/app/logger",
     ],

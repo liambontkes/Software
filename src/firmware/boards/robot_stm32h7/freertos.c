@@ -426,10 +426,12 @@ void initIoPowerMonitor(void)
 
 void initIoChicker(void)
 {
-//    GpioPin_t *breakbeam_pin = io_gpio_pin_create(
-//        BREAKBEAM_GPIO_Port, BREAKBEAM_Pin, ACTIVE_HIGH);
-//
-//    Breakbeam_t *breakbeam = io_breakbeam_create(breakbeam_pin);
+    GpioPin_t *breakbeam_pin = io_gpio_pin_create(
+        BREAKBEAM_GPIO_Port, BREAKBEAM_Pin, ACTIVE_HIGH);
+
+    Breakbeam_t *breakbeam = io_breakbeam_create(breakbeam_pin);
+
+    io_chicker_init(breakbeam);
 }
 
 /* USER CODE END Application */
